@@ -31,7 +31,7 @@ fn reordered(rules: &HashMap<u64, Vec<u64>>, updates: &[u64]) -> Vec<u64> {
             }
         }
     }
-    if !is_ordered(&rules, &updates) {
+    if !is_ordered(&rules, &reordered_updates) {
         reordered_updates = reordered(&rules, &reordered_updates);
     }
     reordered_updates
