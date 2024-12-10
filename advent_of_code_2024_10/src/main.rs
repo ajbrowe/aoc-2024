@@ -77,6 +77,10 @@ fn dfs(
 
     // If we reached 9, we found a valid path
     if value == 9 {
+        // part 1 we want to remember that we have seen this 9 as we count number
+        // of 9's that can be reached.
+        // part 2 we want to find as many ways to reach all 9's so we forget it
+        // to allow us to find another way to get here
         if p2 {
             visited[y as usize][x as usize] = false;
         }
