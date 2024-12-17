@@ -75,7 +75,7 @@ fn render_at (robots: &Vec<Robot>, space: &Point, time: isize) {
         for x in 0..space.x {
             let p: Point = Point{x: x, y: y};
             if robot_positions.contains_key(&p) {
-                print!("X");
+                print!("#");
             }
             else {
                 print!(" ");
@@ -90,7 +90,10 @@ fn robots_in_distinct_positions (robots: &Vec<Robot>, space: &Point, time: isize
     let mut robot_positions: HashMap<Point, usize> = HashMap::new();
     for r in robots {
         let p = predict_position(&r, time, space);
-        *robot_positions.entry(p).or_insert(0) += 1;
+        if robot_positions.contains_key(&p) {
+            return false;
+        }
+        robot_positions.insert(p, 1);
     }
     if robots.len() == robot_positions.len() {
         return true;
