@@ -64,7 +64,8 @@ fn find_candidate_removals(path: &Vec<Point>, min_saving: usize, cheat_distance:
     for (i, &p1) in path.iter().enumerate() {
         for (j, &p2) in path.iter().enumerate().skip(i + 2) {
             let distance = p1.distance(&p2);
-            if distance <= cheat_distance  && ((j - i) - distance) >= min_saving {
+            let saving = (j -i) - distance;
+            if distance <= cheat_distance  && saving >= min_saving {
                 seen.insert((p1,p2));
             }
         }
